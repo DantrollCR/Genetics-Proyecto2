@@ -3,12 +3,14 @@ package Gladiators;
 import java.util.Random;
 
 import Gladiators.GladiatorNode;
+import Json.Json_editor;
 import Gladiators.Gladiator;
 
 public class Population {
 	private GladiatorNode head;
 	private GladiatorNode tail;
 	Random rand = new Random();
+	
 	private int[] goal;
 	private int size = 0;
 
@@ -94,6 +96,22 @@ public class Population {
 	 * @param i
 	 * @return
 	 */
+	public Gladiator getE(int i) {
+		int count = 0;
+		GladiatorNode temporal = this.head;
+
+		while (temporal!=null) {
+			if(temporal.getGlad().getID()==i) {
+				return temporal.getGlad();
+			}
+			else {
+			temporal = temporal.getNext();
+			count++;}
+			
+		}
+		return null;
+		
+	}
 	public Gladiator get(int i) {
 		int count = 0;
 		GladiatorNode temporal = this.head;
@@ -119,7 +137,7 @@ public class Population {
 		int p = rand.nextInt(this.size);
 		GladiatorNode temporal = this.head;
 		int count = 0;
-		while (count < 2) {
+		while (count <p) {
 			temporal = temporal.getNext();
 			count++;
 		}
@@ -129,25 +147,38 @@ public class Population {
 	public void head(Gladiator Glad) {
 		this.head.setGlad(Glad);
 	}
+public int getSize() {
+	return this.size;
+}
+public Gladiator getFittest(int i) {
+	Gladiator fit = null;
+	GladiatorNode temporal = this.head;
+	int count =0;
+	fit = get(size-i);
+	return fit;
+}
 
-	public int getFittest() {
-		return this.tail.getGlad().getFitness();
-	}
-
-	public void Fitness() {
-		int fitness = 0;
-		for (int i = 0; i < size; i++) {
-			for (int j = 1; j < goal.length; j++) {
-				if (get(i).getCromosome(j) == goal[j]) {
-					fitness++;
-
-				}
-				get(i).setFitness(fitness);
-
+public void fitness() {
+	int fitness =0;
+	int count = 0;
+	GladiatorNode temporal = this.head;
+	while (count <size) {
+		fitness=0;
+		for (int i = 0; i < goal.length; i++) {
+			
+			if(temporal.getGlad().getCromosome(i+1)==goal[i])
+			{
+				fitness++;
 			}
-		
 		}
+		temporal.getGlad().setFitness(fitness);
+		temporal = temporal.getNext();
+		count++;
 	}
+	
+}
+
+
 
 int partition(int low,int high) 
 { 
