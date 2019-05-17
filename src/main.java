@@ -11,16 +11,25 @@ import Gladiators.*;
 import Json.*;
 
 public class main {
+	static Genetic gen = new Genetic();
+	static void funcionPost() throws IOException {
+		//Si se necesita enviar un string se usa:
+		String s= gen.getPopuJson().toString();
+		
+		
+		System.out.println(s);
+	}
 	public static void main(String[] args) throws IOException, ParseException {
 		// TODO Auto-generated method stub
-		Genetic gen = new Genetic();
-		Json_editor json = new Json_editor();
-
+	    long start = System.currentTimeMillis();
 		System.out.println("Server On!");
-		
-		gen.run(45);	
+		gen.run(100);
+	    long end = System.currentTimeMillis();
+	    float sec = (end - start) / 1000F; System.out.println(sec + " seconds");
+	    funcionPost();
 
-		
 	}
+
+
 }
 

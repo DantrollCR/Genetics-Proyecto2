@@ -135,8 +135,10 @@ public class Gladiator {
 		Resist = resist;
 	}
 	public void printCromosome() {
-		for (int i = 0; i < Cromosome.length; i++) {
-			System.out.println(Cromosome[i]);
+		for (int i = 1; i < Cromosome.length; i++) {
+			System.out.print(Cromosome[i]+",");
+			
 		}
+		System.out.println("");
 	}
 }

@@ -1,11 +1,16 @@
 package Gladiators;
 
 import java.util.Random;
-
 import Gladiators.GladiatorNode;
 import Json.Json_editor;
 import Gladiators.Gladiator;
 
+/**
+ * Lista doblemente enlazada, utilizada para 
+ * almacenar Gladiadores.
+ * @author dantroll
+ *
+ */
 public class Population {
 	private GladiatorNode head;
 	private GladiatorNode tail;
@@ -62,7 +67,7 @@ public class Population {
 	}
 
 	/**
-	 * Remueve un nodo a partir del Gladeto que hay en él. Compara cada Gladeto con
+	 * Remueve un nodo a partir del Gladiador que hay en él. Compara cada Gladeto con
 	 * el introducido, y al encontrarlo elimina el nodo que lo contiene.
 	 * 
 	 * @param Glad
@@ -89,7 +94,7 @@ public class Population {
 	}
 
 	/**
-	 * Obtiene el Gladeto de un nodo, a partir de un indice especificado. Recorre
+	 * Obtiene el Gladiador de un nodo, a partir de un indice especificado. Recorre
 	 * los nodos y cuando llega al nodo deseado retorna el Gladeto dentro de ese
 	 * nodo.
 	 * 
@@ -132,7 +137,11 @@ public class Population {
 		}
 		return temporal;
 	}
-
+/**
+ * Funcion utilizada para reemplazar un Gladiador hijo-mejorado-,
+ * con uno random de la poblaciòn.
+ * @param Glad
+ */
 	public void replace(Gladiator Glad) {
 		int p = rand.nextInt(this.size);
 		GladiatorNode temporal = this.head;
@@ -142,7 +151,6 @@ public class Population {
 			count++;
 		}
 		temporal.setGlad(Glad);
-		// System.out.println("Se cambiò en "+2);
 	}
 	public void head(Gladiator Glad) {
 		this.head.setGlad(Glad);
@@ -150,6 +158,12 @@ public class Population {
 public int getSize() {
 	return this.size;
 }
+/**
+ * Obtiene al mejor Gladiador, basado en sus atributos 
+ * y su valor de fitness.
+ * @param i
+ * @return
+ */
 public Gladiator getFittest(int i) {
 	Gladiator fit = null;
 	GladiatorNode temporal = this.head;
@@ -157,7 +171,11 @@ public Gladiator getFittest(int i) {
 	fit = get(size-i);
 	return fit;
 }
-
+/**
+ * Se calcula el "fitness" de cada gladiador, comparando sus 
+ * atribtos con el individuo "base" al cual deben llegar.
+ * 
+ */
 public void fitness() {
 	int fitness =0;
 	int count = 0;
@@ -175,7 +193,6 @@ public void fitness() {
 		temporal = temporal.getNext();
 		count++;
 	}
-	
 }
 
 
@@ -183,23 +200,18 @@ public void fitness() {
 int partition(int low,int high) 
 { 
     int pivot = get(high).getFitness();  
-    int i = (low-1); // index of smaller element 
+    int i = (low-1);
     for (int j=low; j<high; j++) 
     { 
-        // If current element is smaller than or 
-        // equal to pivot 
         if (get(j).getFitness() <= pivot) 
         { 
             i++; 
-
-            // swap get(i] and get(j] 
             Gladiator temp = get(i); 
             geta(i).setGlad(get(j)); 
             geta(j).setGlad(temp); 
         } 
     } 
 
-    // swap get(i+1] and get(high] (or pivot) 
     Gladiator temp = get(i+1); 
     geta(i+1).setGlad(get(high)); 
     geta(high).setGlad(temp); 
@@ -207,21 +219,16 @@ int partition(int low,int high)
     return i+1; 
 } 
 
-
-/* The main function that implements QuickSort() 
-  get(] --> Array to be sorted, 
-  low  --> Starting index, 
-  high  --> Ending index */
+/**
+ * QuickSort utilizado para reordenar los Gladiadores.
+ * @param low
+ * @param high
+ */
 public void sort(int low, int high) 
 { 
     if (low < high) 
     { 
-        /* pi is partitioning index, arr[pi] is  
-          now at right place */
         int pi = partition(low, high); 
-
-        // Recursively sort elements before 
-        // partition and after partition 
         sort(low, pi-1); 
         sort(pi+1, high); 
     } 

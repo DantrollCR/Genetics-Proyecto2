@@ -15,7 +15,12 @@ import Gladiators.Population;
 import org.json.simple.parser.JSONParser;
 
 public class Json_editor {
-
+/**
+ * Obtiene un String a partir de un objeto Json.
+ * @param obj
+ * @return String Json
+ * @throws IOException
+ */
 	public String getString_json(JSONObject obj) throws IOException {
 		
 	      StringWriter out = new StringWriter();
@@ -23,6 +28,12 @@ public class Json_editor {
 	      String s = out.toString();
 		return s;
 	}
+	/**
+	 * Crea un archivo .json en Disco, puede usarse para tener 
+	 * un respaldo.
+	 * @param s
+	 * @throws FileNotFoundException
+	 */
 	public void create_file(String s) throws FileNotFoundException {
 	    
 		PrintWriter out2 = new PrintWriter("Population.json");
