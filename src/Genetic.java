@@ -114,6 +114,28 @@ public class Genetic {
 	void init(int size) {
 
 	}
+	void newgeneration(int ID1,int ID2) {
+
+		int count = 0;
+		Gladiator son = null;
+		Gladiator son1 = null;
+		son = crossover(popu.getE(ID1),popu.getE(ID2));
+		son1 = crossover(popu.getFittest(1), popu.getFittest(4));
+
+		popu.clear();
+
+		while (count < size) {
+			Gladiator gladi = new Gladiator(createGen());
+			popu.add(gladi);
+			count++;
+		}
+		popu.replace(son);
+		popu.head(son1);
+
+		popu.fitness();
+		popu.sort(0, size - 1);
+		generations++;
+	}
 /**
  * Usada para generar las nuevas generaciones, aqui es donde se 
  * inicializan los nuevos hijos y se le dan los valores a 
@@ -139,7 +161,6 @@ public class Genetic {
 
 		popu.fitness();
 		popu.sort(0, size - 1);
-
 		generations++;
 	}
 /**
@@ -163,13 +184,13 @@ public void run(int size) throws IOException, ParseException {
 			count++;
 		}
 		popu.fitness();
-
+		popu.sort(0, size-1);
 		// json.createJson(popu);
 		System.out.println("Primera Generación: ");
 		while (popu.getFittest(1).getFitness() < 7) {
 			newgeneration();
 		}
-
+		printPopulation();
 		System.out.println("\n" + "DESPUES DE CROSSOVER");
 		System.out.println("Generaciones: " + generations);
 

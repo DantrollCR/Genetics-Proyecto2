@@ -45,7 +45,6 @@ public class Json_editor {
 		JSONObject obj = new JSONObject();
 		JSONObject obj2 = new JSONObject();
 
-		int[] array = {1,2,3,4,5,6,0};
 		Gladiator glad;
 		JSONArray asds = new JSONArray();
 

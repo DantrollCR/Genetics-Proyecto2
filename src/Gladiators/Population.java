@@ -101,12 +101,12 @@ public class Population {
 	 * @param i
 	 * @return
 	 */
-	public Gladiator getE(int i) {
+	public Gladiator getE(int id) {
 		int count = 0;
 		GladiatorNode temporal = this.head;
 
 		while (temporal!=null) {
-			if(temporal.getGlad().getID()==i) {
+			if(temporal.getGlad().getID()==id) {
 				return temporal.getGlad();
 			}
 			else {
